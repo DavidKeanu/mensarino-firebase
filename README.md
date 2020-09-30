@@ -1,21 +1,31 @@
-Willkommen zu Mensarino. Deine Mensapp!
+<<<<<<< HEAD
+[![Work in Repl.it](https://classroom.github.com/assets/work-in-replit-14baed9a392b3a25080506f3b7b6d57f295ec2978f6f33ec97e36a161684cbe9.svg)](https://classroom.github.com/online_ide?assignment_repo_id=269469&assignment_repo_type=GroupAssignmentRepo)
+=======
+# Mensa
 
-Getting started:
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
 
-1. MongoDB installieren. https://www.mongodb.com/try/download/community 
-2. mensen DB (Create Database) erstellen und mensen Collection erstellen. 
-3. Collection mit Daten befüllen von https://openmensa.org/api/v2/canteens (JSON)
-4. MongoDB sollte auf Port localhost:27017 laufen.
-5. Projekt von diesem Respository in die IDE der eigenen Wahl clonen. 
-6. Node package manager wird benötigt. Alle Dependencys mit "npm install" installieren. 
-7. Über cli in /backend navigieren und "npm run dev" ausführen. Backend sollte nun auf port 4000 laufen.
-8. Frontend über die IDE starten. Alternativ zu /frontend navigieren und "ng serve" ausführen.
-9. Die App läuft im dev Mode.
+## Development server
 
-Tetsting Service Worker und Push Notifications:
-1. Über cli in /frontend navigieren -> "ng build --prod" ausführen.
-2. "npm install -g angular-http-server"
-3. über cli in dist/mensa navigieren. "http-server" ausführen.
-4. Über localhost:8080 testen.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Code scaffolding
 
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+>>>>>>> Initial Commit. Project Setup for our app.

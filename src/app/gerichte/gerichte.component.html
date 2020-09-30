@@ -3,7 +3,7 @@
 <div class="mensen-container">
   <mat-expansion-panel (opened)="panelOpenState = true"
                        (closed)="panelOpenState = false">
-    <app-mensen (mensaSelected)="useMensaSelected($event)"></app-mensen>
+    <app-mensen *ngIf="panelOpenState" (mensaSelected)="useMensaSelected($event)"></app-mensen>
     <mat-expansion-panel-header class="col-lg-6 offset-lg-3">
       <mat-panel-title class="justify-content-start">
         <div *ngIf="this.mensaSelectedName">
