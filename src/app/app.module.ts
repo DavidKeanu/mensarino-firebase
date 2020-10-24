@@ -34,6 +34,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatListModule} from '@angular/material/list';
 import {PraeferenzenModule} from './praeferenzen/praeferenzen.module';
 import {MensenComponent} from './mensen/mensen.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -69,7 +71,9 @@ import {MensenComponent} from './mensen/mensen.component';
     MatRippleModule,
     MatDatepickerModule,
     MatListModule,
-    PraeferenzenModule
+    PraeferenzenModule,
+    ScrollingModule,
+    MatSnackBarModule
 
   ],
   providers: [GerichtService, MensaService, DatePipe],

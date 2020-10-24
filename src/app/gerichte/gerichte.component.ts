@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Gericht} from './gericht.model';
 import {DatePipe} from '@angular/common';
 import {FavoriteService} from '../service/favorite.service';
 import {DataStorageService} from '../service/data-storage.service';
 import {GerichtService} from '../service/gericht.service';
+import {CdkVirtualScrollViewport} from '@angular/cdk/scrolling';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class GerichteComponent implements OnInit {
   public keineGerichte: boolean;
   //Used to check if selected mensa is marked as favorite
   public favoriteMensa: any;
+  @ViewChild(CdkVirtualScrollViewport) virtualScroll: CdkVirtualScrollViewport;
 
   constructor(private gerichtService: GerichtService,
               private dataStorageService: DataStorageService,
@@ -30,6 +32,7 @@ export class GerichteComponent implements OnInit {
 
   // this.datePipe.transform(this.date, 'yyyy-MM-dd')
   ngOnInit() {
+
     this.date = new Date();
     //Default Mensa and ID
     this.mensaSelectedName = 'Hannover, Contine';
@@ -74,12 +77,14 @@ export class GerichteComponent implements OnInit {
   dateForward() {
     this.date = new Date(this.date.setDate(this.date.getDate() + 1));
     this.fetchGerichte(this.mensaSelectedID, this.datePipe.transform(this.date, 'yyyy-MM-dd'));
+    this.virtualScroll.scrollToIndex(0);
   }
 
   //Go on day backwards and fetch Gerichte
   dateBack() {
     this.date = new Date(this.date.setDate(this.date.getDate() - 1));
     this.fetchGerichte(this.mensaSelectedID, this.datePipe.transform(this.date, 'yyyy-MM-dd'));
+    this.virtualScroll.scrollToIndex(0);
   }
   //New Mensa got selected -> Fetch Gerichte again
   useMensaSelected($event: any) {
@@ -88,6 +93,7 @@ export class GerichteComponent implements OnInit {
     this.fetchGerichte(this.mensaSelectedID, this.datePipe.transform(this.date, 'yyyy-MM-dd'));
     localStorage.setItem('mensaSelected', this.mensaSelectedName);
     localStorage.setItem('mensaSelectedId', this.mensaSelectedID.toString());
+    this.virtualScroll.scrollToIndex(0);
 
     // neue API Anfrage, wenn eine Mensa ausgewählt wurde.
   }

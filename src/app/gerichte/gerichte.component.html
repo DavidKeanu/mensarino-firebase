@@ -23,17 +23,17 @@
   </mat-expansion-panel>
 </div>
 <div class="marginGerichte">
-<div class="d-flex mensen col-lg-6 offset-lg-3">
+  <div class="d-flex mensen col-lg-6 offset-lg-3">
     <button class="center" mat-icon-button aria-label="chevron_left">
       <mat-icon (click)="dateBack()">chevron_left</mat-icon>
     </button>
 
-  <span class="title-center">
+    <span class="title-center">
 {{date.toLocaleString('de', {weekday: 'long'}) + ' - '}}{{date | date:'dd.MM.yyyy'}} </span>
     <button class="center" mat-icon-button aria-label="chevron_right">
       <mat-icon (click)="dateForward()">chevron_right</mat-icon>
     </button>
-</div>
+  </div>
 </div>
 <div *ngIf="keineGerichte">
   <div *ngIf="!panelOpenState" class="h-100 image-container">
@@ -44,8 +44,12 @@
 <div class="col-lg-6 offset-lg-3 px-0">
   <div *ngIf="!keineGerichte">
     <div *ngIf="!panelOpenState" class="mx-3">
-      <app-gerichte-item *ngFor="let gericht of gerichte"
-                         [gerichtItem]="gericht"></app-gerichte-item>
+      <cdk-virtual-scroll-viewport [itemSize]="225" style="height: 600px">
+        <div *cdkVirtualFor="let gericht of gerichte">
+          <app-gerichte-item
+            [gerichtItem]="gericht"></app-gerichte-item>
+        </div>
+      </cdk-virtual-scroll-viewport>
     </div>
   </div>
 </div>
