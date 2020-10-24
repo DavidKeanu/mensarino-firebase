@@ -10,7 +10,6 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {GerichteComponent} from './gerichte/gerichte.component';
 import {GerichteItemComponent} from './gerichte/gerichte-item/gerichte-item.component';
-import {AboutComponent} from './about/about.component';
 import {AppRoutingModule} from './app-routing.module';
 import {MainNavComponent} from './main-nav/main-nav.component';
 import {LayoutModule} from '@angular/cdk/layout';
@@ -27,16 +26,14 @@ import {FormsModule} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { ImpressumComponent } from './impressum/impressum.component';
-import { HilfeComponent } from './hilfe/hilfe.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {GerichtService} from './service/gericht.service';
 import {MensaService} from './service/mensa.service';
 import {MatRippleModule} from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MensenModule} from './mensen/mensen.module'
 import {MatListModule} from '@angular/material/list';
 import {PraeferenzenModule} from './praeferenzen/praeferenzen.module';
+import {MensenComponent} from './mensen/mensen.component';
 
 
 @NgModule({
@@ -44,10 +41,8 @@ import {PraeferenzenModule} from './praeferenzen/praeferenzen.module';
     AppComponent,
     GerichteComponent,
     GerichteItemComponent,
-    AboutComponent,
     MainNavComponent,
-    ImpressumComponent,
-    HilfeComponent,
+    MensenComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +68,6 @@ import {PraeferenzenModule} from './praeferenzen/praeferenzen.module';
     MatSlideToggleModule,
     MatRippleModule,
     MatDatepickerModule,
-    MensenModule,
     MatListModule,
     PraeferenzenModule
 

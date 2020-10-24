@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/mensarino-firebase",
+    "public": "dist/mensa",
     "ignore": [
       "firebase.json",
       "**/.*",

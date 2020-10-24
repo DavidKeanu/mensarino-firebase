@@ -7,7 +7,6 @@ html, body {
 }
 
 body {
-  font-family: Roboto, "Helvetica Neue", sans-serif
 }
 
 button:focus, button:active:focus, button.active:focus {
