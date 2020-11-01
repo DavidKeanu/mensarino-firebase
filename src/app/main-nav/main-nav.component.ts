@@ -19,7 +19,16 @@ export class MainNavComponent {
       map(result => result.matches),
       shareReplay()
     );
-
+  @HostListener('window:beforeinstallprompt', ['$event'])
+  onbeforeinstallprompt(e) {
+    console.log(e);
+    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    e.preventDefault();
+    // Stash the event so it can be triggered later.
+    this.deferredPrompt = e;
+    this.showSnackbar = true;
+    console.log("before Event wurde geschmissen")
+  }
 
   constructor(private breakpointObserver: BreakpointObserver,
               private _snackBar: MatSnackBar) {
@@ -30,8 +39,8 @@ export class MainNavComponent {
 
 
   openSnackBar() {
-    this._snackBar.openFromComponent(PizzaPartyComponent, {data: "Sample data",
-      duration: 4000,
+    this._snackBar.openFromComponent(PizzaPartyComponent, {data: this.deferredPrompt,
+      duration: 6000,
     });
   }
   // addToHomeScreen() {
@@ -41,17 +50,23 @@ export class MainNavComponent {
   // }
   ngOnInit() {
     console.log("test")
-    setTimeout(() => {
-      // if (this.showSnackbar) {
-      this.openSnackBar();
-      // }
-    }, 2000);
-  }
+
+      setTimeout(() => {
+         // if (this.showSnackbar) {
+        this.openSnackBar();
+         // }
+      }, 2000);
+    }
 
   //Set current title for page
   setTitle(title: string) {
     this.title = title;
   }
+  deferredPrompt: any;
+  showSnackbar = false;
+
+
+
 
 
 }
@@ -62,25 +77,15 @@ export class MainNavComponent {
   export class PizzaPartyComponent {
   constructor(
     public snackBarRef: MatSnackBarRef<PizzaPartyComponent>,
-    @Inject(MAT_SNACK_BAR_DATA) public data: any) {
+    @Inject(MAT_SNACK_BAR_DATA) public deferredPrompt: any) {
   }
 
-    deferredPrompt: any;
-    showSnackbar = false;
-    @HostListener('window:beforeinstallprompt', ['$event'])
-    onbeforeinstallprompt(e) {
-      console.log(e);
-      // Prevent Chrome 67 and earlier from automatically showing the prompt
-      e.preventDefault();
-      // Stash the event so it can be triggered later.
-      this.deferredPrompt = e;
-      this.showSnackbar = true;
-    }
     addPWA() {
       console.log("install Test")
-      if (this.deferredPrompt) {
-        this.deferredPrompt.prompt();
-      }
+      console.log(this.deferredPrompt)
+
+      this.deferredPrompt.prompt();
+
       this.deferredPrompt.userChoice
         .then((choiceResult) => {
           if (choiceResult.outcome === 'accepted') {
