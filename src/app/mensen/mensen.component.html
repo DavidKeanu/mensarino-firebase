@@ -1,6 +1,17 @@
-<mat-selection-list #mensa [multiple]="false" class="top">
-    <mat-list-option *ngFor="let mensen of mensen" (click)="onMensaSelectedChange(mensen)">
-      {{mensen.name}}
-    </mat-list-option>
-  </mat-selection-list>
-
+<!-- Search form -->
+<div class="container position-fixed">
+  <form class="form-inline d-flex justify-content-center md-form top">
+    <i class="fas fa-search" aria-hidden="true"></i>
+    <input class="form-control f" type="text" placeholder="Search"
+           aria-label="Search">
+  </form>
+</div>
+<div class="container-fluid">
+<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+  <mat-selection-list [disableRipple]="true" #mensa [multiple]="false" class="selectionTop">
+  <mat-list-option *cdkVirtualFor="let mensen of mensen" (click)="onMensaSelectedChange(mensen)" class="example-item">
+    {{mensen.name}}
+  </mat-list-option>
+</mat-selection-list>
+  </cdk-virtual-scroll-viewport>
+</div>

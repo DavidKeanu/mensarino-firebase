@@ -11,7 +11,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {GerichteComponent} from './gerichte/gerichte.component';
 import {GerichteItemComponent} from './gerichte/gerichte-item/gerichte-item.component';
 import {AppRoutingModule} from './app-routing.module';
-import {MainNavComponent, PizzaPartyComponent} from './main-nav/main-nav.component';
+import {MainNavComponent} from './main-nav/main-nav.component';
 import {LayoutModule} from '@angular/cdk/layout';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {HttpClientModule} from '@angular/common/http';
@@ -36,6 +36,7 @@ import {PraeferenzenModule} from './praeferenzen/praeferenzen.module';
 import {MensenComponent} from './mensen/mensen.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {SnackBar} from './main-nav/snackBar/snackBar';
 
 
 @NgModule({
@@ -45,7 +46,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     GerichteItemComponent,
     MainNavComponent,
     MensenComponent,
-    PizzaPartyComponent
+    SnackBar
   ],
   imports: [
     BrowserModule,
@@ -75,6 +76,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     PraeferenzenModule,
     ScrollingModule,
     MatSnackBarModule
+
 
 
   ],

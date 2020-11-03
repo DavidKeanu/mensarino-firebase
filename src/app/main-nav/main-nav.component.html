@@ -30,9 +30,6 @@
       </div>
       <span class="my-auto ml-2 font">{{title}}</span>
       <div class="spacer"><a mat-button routerLink="/gerichte"><img src="assets/icons/icon-72x72.png" class="logo2 my-1" (click)="setTitle( 'Speiseplan' )"></a></div>
-<!--        <button mat-icon-button class="ml-auto" aria-label="Example icon button with a home icon">-->
-<!--          <mat-icon class="add_Size">add_to_home_screen</mat-icon>-->
-<!--      </button>-->
       <span *ngIf="!(isHandset$ | async)">
           <a routerLink="/gerichte" routerLinkActive="active_route" class="px-4">Speiseplan</a>
         <a routerLink="/mensen" routerLinkActive="active_route" class="px-4">Mensen</a>

@@ -2,7 +2,9 @@ import {Component, HostListener, Inject} from '@angular/core';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Observable} from 'rxjs';
 import {map, shareReplay} from 'rxjs/operators';
-import {MatSnackBar, MatSnackBarRef, MAT_SNACK_BAR_DATA} from '@angular/material/snack-bar';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {PwaServiceService} from '../service/pwa-service.service';
+import {SnackBar} from './snackBar/snackBar';
 
 @Component({
   selector: 'app-main-nav',
@@ -19,6 +21,7 @@ export class MainNavComponent {
       map(result => result.matches),
       shareReplay()
     );
+
   @HostListener('window:beforeinstallprompt', ['$event'])
   onbeforeinstallprompt(e) {
     console.log(e);
@@ -26,76 +29,47 @@ export class MainNavComponent {
     e.preventDefault();
     // Stash the event so it can be triggered later.
     this.deferredPrompt = e;
-    this.showSnackbar = true;
-    console.log("before Event wurde geschmissen")
+    //Show Snackbar, when app is not installed
+    this.pwaService.setSnackbar(true);
+    console.log('before Event wurde geschmissen');
   }
 
   constructor(private breakpointObserver: BreakpointObserver,
-              private _snackBar: MatSnackBar) {
+              private _snackBar: MatSnackBar,
+              private pwaService: PwaServiceService) {
   }
 
   message = 'JA';
   action = 'NEIN';
-
+  deferredPrompt: any;
+  show: boolean;
 
   openSnackBar() {
-    this._snackBar.openFromComponent(PizzaPartyComponent, {data: this.deferredPrompt,
+    this._snackBar.openFromComponent(SnackBar, {
+      data: this.deferredPrompt,
       duration: 6000,
     });
   }
-  // addToHomeScreen() {
-  //   // hide our user interface that shows our A2HS button
-  //   this.showButton = false;
-  //   // Show the prompt
-  // }
-  ngOnInit() {
-    console.log("test")
 
-      setTimeout(() => {
-         // if (this.showSnackbar) {
+
+
+  ngOnInit() {
+    //Subscribe to see if Snackbar Install prompt is shown
+    this.pwaService.showSnackbar.subscribe((showSnack) => {
+     this.show = showSnack
+    });
+
+    setTimeout(() => {
+      if (this.show) {
         this.openSnackBar();
-         // }
-      }, 2000);
-    }
+      }
+    }, 2000);
+  }
 
   //Set current title for page
   setTitle(title: string) {
     this.title = title;
   }
-  deferredPrompt: any;
-  showSnackbar = false;
-
-
-
-
-
-}
-  @Component({
-    selector: 'snack-bar-componet-example-snack',
-    templateUrl: 'snack-bar-componet-example-snack.html',
-  })
-  export class PizzaPartyComponent {
-  constructor(
-    public snackBarRef: MatSnackBarRef<PizzaPartyComponent>,
-    @Inject(MAT_SNACK_BAR_DATA) public deferredPrompt: any) {
-  }
-
-    addPWA() {
-      console.log("install Test")
-      console.log(this.deferredPrompt)
-
-      this.deferredPrompt.prompt();
-
-      this.deferredPrompt.userChoice
-        .then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the A2HS prompt');
-          } else {
-            console.log('User dismissed the A2HS prompt');
-          }
-          this.deferredPrompt = null;
-        });
-    }
 }
 
 

@@ -9,10 +9,6 @@ export class GerichtService {
 
   public gerichteChanged = new Subject<Gericht[]>();
 
-  getGerichte() {
-    return this.gerichte.slice();
-  }
-
   setGerichte(gericht: Gericht[]) {
     this.gerichte = gericht;
     this.gerichteChanged.next(this.gerichte.slice())

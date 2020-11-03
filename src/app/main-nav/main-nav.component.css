@@ -70,3 +70,6 @@ mat-list:hover {
   font-size:28px !important;
   margin-top: 10px;
 }
+.mat-drawer-content{
+  height: auto !important;
+}

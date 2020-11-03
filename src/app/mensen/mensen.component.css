@@ -5,5 +5,16 @@ table {
   z-index: 1;
 }
 .top{
-  margin-top: 60px;
+  margin-top: 70px;
+  z-index: 200;
+}
+.selectionTop{
+  margin-top: 110px;
+  overflow: auto;
+}
+.example-viewport{
+  height: 800px;
+}
+.example-item {
+  height: 50px;
 }
