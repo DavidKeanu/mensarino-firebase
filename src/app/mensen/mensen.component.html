@@ -1,17 +1,19 @@
 <!-- Search form -->
-<div class="container position-fixed">
+<div class="container">
   <form class="form-inline d-flex justify-content-center md-form top">
     <i class="fas fa-search" aria-hidden="true"></i>
-    <input class="form-control f" type="text" placeholder="Search"
-           aria-label="Search">
+    <input matInput class="form-control f" type="text" placeholder="Search"
+           aria-label="Search" [(ngModel)]="term" name="term">
   </form>
 </div>
 <div class="container-fluid">
-<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-  <mat-selection-list [disableRipple]="true" #mensa [multiple]="false" class="selectionTop">
-  <mat-list-option *cdkVirtualFor="let mensen of mensen" (click)="onMensaSelectedChange(mensen)" class="example-item">
-    {{mensen.name}}
-  </mat-list-option>
-</mat-selection-list>
+  <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+    <mat-selection-list disableRipple #mensa [multiple]="false" class="selectionTop">
+      <div *cdkVirtualFor="let mensen of mensen | filter: term">
+        <mat-list-option (click)="onMensaSelectedChange(mensen)" class="example-item">
+          {{mensen.name}}
+        </mat-list-option>
+      </div>
+    </mat-selection-list>
   </cdk-virtual-scroll-viewport>
 </div>

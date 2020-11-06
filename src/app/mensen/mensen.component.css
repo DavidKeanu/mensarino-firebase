@@ -9,12 +9,12 @@ table {
   z-index: 200;
 }
 .selectionTop{
-  margin-top: 110px;
   overflow: auto;
 }
 .example-viewport{
-  height: 800px;
+  height: 550px;
 }
 .example-item {
   height: 50px;
 }
+

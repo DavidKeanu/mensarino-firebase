@@ -37,6 +37,8 @@ import {MensenComponent} from './mensen/mensen.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SnackBar} from './main-nav/snackBar/snackBar';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 
 
 @NgModule({
@@ -75,7 +77,8 @@ import {SnackBar} from './main-nav/snackBar/snackBar';
     MatListModule,
     PraeferenzenModule,
     ScrollingModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    Ng2SearchPipeModule
 
 
 
